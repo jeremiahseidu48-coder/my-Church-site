@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Lord's Shepherd Ministries</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+ 
+  :root {
+    --gold: #C9A84C;
+    --gold-light: #E8C96A;
+    --gold-pale: #F5E6B8;
+    --gold-dark: #8B6914;
+    --black: #0A0A0A;
+    --black-soft: #141414;
+    --black-mid: #1E1E1E;
+    --black-card: #181818;
+    --white: #FDFCF7;
+    --white-muted: #E8E4D9;
+    --font-display: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Montserrat', sans-serif;
+  }
+ 
+  html { scroll-behavior: smooth; }
+ 
+  body {
+    font-family: var(--font-body);
+    background: var(--black);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+ 
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
+ 
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 4%;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    transition: padding 0.3s;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 12px; text-decoration: none;
+  }
+  .nav-logo-icon {
+    width: 40px; height: 40px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .nav-logo-icon svg { width: 100%; height: 100%; }
+  .nav-logo-text {
+    font-family: var(--font-display);
+    font-size: 1.1rem; font-weight: 600;
+    color: var(--gold); line-height: 1.2;
+    letter-spacing: 0.02em;
+  }
+  .nav-logo-text span { display: block; font-size: 0.7rem; font-family: var(--font-body); font-weight: 300; color: var(--white-muted); letter-spacing: 0.15em; text-transform: uppercase; }
+ 
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--white-muted);
+    transition: color 0.2s;
+    position: relative;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+    height: 1px; background: var(--gold);
+    transform: scaleX(0); transition: transform 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+  .nav-links a:hover::after { transform: scaleX(1); }
+ 
+  .nav-give {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--black); background: var(--gold);
+    padding: 0.55rem 1.4rem; border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .nav-give:hover { background: var(--gold-light); transform: translateY(-1px); }
+ 
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--gold); transition: 0.3s; }
+ 
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    background: var(--black);
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 50% 60%, rgba(201,168,76,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 20%, rgba(201,168,76,0.04) 0%, transparent 60%);
+  }
+  .hero-cross {
+    position: absolute; top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(60vw, 500px); opacity: 0.04;
+    pointer-events: none;
+  }
+  .hero-lines {
+    position: absolute; inset: 0; overflow: hidden;
+  }
+  .hero-lines::before, .hero-lines::after {
+    content: ''; position: absolute;
+    border: 1px solid rgba(201,168,76,0.06);
+    border-radius: 50%;
+  }
+  .hero-lines::before { width: 70vw; height: 70vw; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+  .hero-lines::after { width: 50vw; height: 50vw; top: 50%; left: 50%; transform: translate(-50%,-50%); }
+ 
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center; padding: 8rem 5% 5rem;
+    max-width: 860px;
+    animation: fadeUp 1.2s ease both;
+  }
+  .hero-eyebrow {
+    font-size: 0.7rem; font-weight: 500; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.5rem;
+    display: flex; align-items: center; justify-content: center; gap: 12px;
+  }
+  .hero-eyebrow::before, .hero-eyebrow::after {
+    content: ''; display: block; width: 40px; height: 1px; background: var(--gold-dark);
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 7vw, 6rem);
+    font-weight: 700; line-height: 1.05;
+    color: var(--white);
+    margin-bottom: 0.3em;
+  }
+  .hero-title em { color: var(--gold); font-style: italic; }
+  .hero-subtitle {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    font-weight: 400; font-style: italic;
+    color: var(--white-muted); margin-bottom: 2.5rem;
+    letter-spacing: 0.03em;
+  }
+  .hero-verse {
+    font-size: 0.78rem; font-weight: 300; letter-spacing: 0.08em;
+    color: var(--gold-dark); margin-bottom: 2.5rem;
+    font-style: italic;
+  }
+  .hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--black); background: var(--gold);
+    padding: 0.9rem 2.2rem; border-radius: 2px;
+    transition: background 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--gold); border: 1px solid rgba(201,168,76,0.5);
+    padding: 0.9rem 2.2rem; border-radius: 2px;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    display: inline-block;
+  }
+  .btn-outline:hover { background: rgba(201,168,76,0.07); border-color: var(--gold); transform: translateY(-2px); }
+ 
+  .hero-scroll {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 8px;
+    animation: bounce 2s infinite;
+  }
+  .hero-scroll span { font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-dark); }
+  .hero-scroll-line { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--gold-dark), transparent); }
+ 
+  /* ── SECTION BASE ── */
+  section { padding: 6rem 6%; }
+  .section-eyebrow {
+    font-size: 0.65rem; font-weight: 500; letter-spacing: 0.25em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: ''; display: block; width: 30px; height: 1px; background: var(--gold-dark);
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 700; line-height: 1.1;
+    color: var(--white); margin-bottom: 1rem;
+  }
+  .section-title em { color: var(--gold); font-style: italic; }
+  .section-lead {
+    font-size: 0.9rem; font-weight: 300; line-height: 1.9;
+    color: var(--white-muted); max-width: 560px;
+  }
+  .divider {
+    width: 60px; height: 2px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    margin: 1.5rem 0;
+  }
+ 
+  /* ── WELCOME / ABOUT ── */
+  .about { background: var(--black-soft); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center; max-width: 1100px; margin: 0 auto;
+  }
+  .about-image-wrap {
+    position: relative;
+  }
+  .about-image-frame {
+    width: 100%; aspect-ratio: 4/5;
+    background: var(--black-mid);
+    border: 1px solid rgba(201,168,76,0.2);
+    border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    overflow: hidden; position: relative;
+  }
+  .about-image-frame::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(201,168,76,0.05), transparent 70%);
+  }
+  .about-image-placeholder {
+    display: flex; flex-direction: column; align-items: center; gap: 1rem;
+    color: var(--gold-dark);
+  }
+  .about-image-placeholder svg { width: 80px; opacity: 0.4; }
+  .about-image-placeholder p { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; opacity: 0.5; }
+  .about-corner {
+    position: absolute; width: 60px; height: 60px;
+    border-color: var(--gold);
+  }
+  .about-corner-tl { top: -12px; left: -12px; border-top: 2px solid; border-left: 2px solid; }
+  .about-corner-br { bottom: -12px; right: -12px; border-bottom: 2px solid; border-right: 2px solid; }
+ 
+  .about-values { display: flex; flex-direction: column; gap: 1.5rem; margin-top: 2.5rem; }
+  .about-value {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1.2rem; background: var(--black-card);
+    border: 1px solid rgba(201,168,76,0.1);
+    border-left: 3px solid var(--gold);
+    border-radius: 2px;
+  }
+  .about-value-icon { font-size: 1.4rem; flex-shrink: 0; margin-top: 2px; }
+  .about-value h4 { font-size: 0.8rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+  .about-value p { font-size: 0.82rem; line-height: 1.7; color: var(--white-muted); font-weight: 300; }
+ 
+  /* ── SERVICE TIMES ── */
+  .services-section { background: var(--black); }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5px; max-width: 1100px; margin: 3rem auto 0;
+    border: 1.5px solid rgba(201,168,76,0.15);
+    border-radius: 4px; overflow: hidden;
+  }
+  .service-card {
+    background: var(--black-card);
+    padding: 2.5rem 2rem;
+    position: relative; overflow: hidden;
+    transition: background 0.3s;
+  }
+  .service-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(to right, var(--gold), transparent);
+    transform: scaleX(0); transition: transform 0.3s;
+    transform-origin: left;
+  }
+  .service-card:hover { background: var(--black-mid); }
+  .service-card:hover::before { transform: scaleX(1); }
+  .service-day {
+    font-size: 0.65rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 0.8rem;
+  }
+  .service-name {
+    font-family: var(--font-display);
+    font-size: 1.6rem; font-weight: 700; color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .service-time {
+    font-size: 1.1rem; font-weight: 300; color: var(--gold-light);
+    margin-bottom: 1rem; letter-spacing: 0.04em;
+  }
+  .service-desc { font-size: 0.8rem; line-height: 1.7; color: var(--white-muted); font-weight: 300; }
+ 
+  .location-bar {
+    max-width: 1100px; margin: 2rem auto 0;
+    padding: 1.5rem 2rem;
+    background: var(--black-card);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-radius: 4px;
+    display: flex; align-items: center; gap: 2rem; flex-wrap: wrap;
+  }
+  .location-bar-icon { font-size: 1.6rem; }
+  .location-bar-text h4 { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.3rem; }
+  .location-bar-text p { font-size: 0.85rem; color: var(--white-muted); font-weight: 300; }
+  .location-bar-btn {
+    margin-left: auto; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; text-decoration: none;
+    color: var(--gold); border: 1px solid rgba(201,168,76,0.4);
+    padding: 0.6rem 1.4rem; border-radius: 2px;
+    transition: background 0.2s;
+  }
+  .location-bar-btn:hover { background: rgba(201,168,76,0.07); }
+ 
+  /* ── SERMONS ── */
+  .sermons { background: var(--black-soft); }
+  .sermons-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem; max-width: 1100px; margin: 3rem auto 0;
+  }
+  .sermon-card {
+    background: var(--black-card);
+    border: 1px solid rgba(201,168,76,0.1);
+    border-radius: 4px; overflow: hidden;
+    transition: border-color 0.3s, transform 0.3s;
+    cursor: pointer;
+  }
+  .sermon-card:hover { border-color: rgba(201,168,76,0.35); transform: translateY(-4px); }
+  .sermon-thumb {
+    aspect-ratio: 16/9; background: var(--black-mid);
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+  .sermon-thumb-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at center, rgba(201,168,76,0.08), transparent 70%);
+  }
+  .play-link {
+    width: 56px; height: 56px; border-radius: 50%;
+    background: rgba(201,168,76,0.15);
+    border: 2px solid var(--gold);
+    display: flex; align-items: center; justify-content: center; /* Makes the whole area clickable */
+    position: relative; z-index: 1;
+    transition: background 0.2s;
+  }
+  .sermon-card:hover .play-btn { background: rgba(201,168,76,0.25); }
+  .play-btn svg { width: 20px; fill: var(--gold); margin-left: 4px; }
+  .sermon-info { padding: 1.5rem; }
+  .sermon-series { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.5rem; }
+  .sermon-title { font-family: var(--font-display); font-size: 1.25rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; line-height: 1.2; }
+  .sermon-meta { font-size: 0.75rem; color: var(--white-muted); font-weight: 300; }
+ 
+  .sermons-cta { text-align: center; margin-top: 3rem; }
+ 
+  /* ── EVENTS ── */
+  .events { background: var(--black); }
+  .events-list {
+    max-width: 800px; margin: 3rem auto 0;
+    display: flex; flex-direction: column; gap: 1px;
+  }
+  .event-item {
+    display: flex; gap: 2rem; align-items: flex-start;
+    padding: 1.8rem 2rem;
+    background: var(--black-card);
+    border: 1px solid rgba(201,168,76,0.08);
+    border-radius: 2px;
+    transition: border-color 0.3s, background 0.3s;
+  }
+  .event-item:hover { border-color: rgba(201,168,76,0.25); background: var(--black-mid); }
+  .event-date {
+    flex-shrink: 0; text-align: center; min-width: 60px;
+    border-right: 1px solid rgba(201,168,76,0.15);
+    padding-right: 1.5rem;
+  }
+  .event-date-day { font-family: var(--font-display); font-size: 2.2rem; font-weight: 700; color: var(--gold); line-height: 1; }
+  .event-date-month { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--white-muted); margin-top: 4px; }
+  .event-info { flex: 1; }
+  .event-tag { display: inline-block; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark); background: rgba(201,168,76,0.08); border: 1px solid rgba(201,168,76,0.15); padding: 2px 8px; border-radius: 2px; margin-bottom: 0.5rem; }
+  .event-name { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; }
+  .event-details { font-size: 0.78rem; color: var(--white-muted); font-weight: 300; line-height: 1.6; }
+ 
+  /* ── GIVE ── */
+  .give {
+    background: var(--black-soft);
+    position: relative; overflow: hidden;
+  }
+  .give::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(201,168,76,0.05), transparent 70%);
+    pointer-events: none;
+  }
+  .give-inner {
+    max-width: 1100px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;
+  }
+  .give-amounts {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 2rem 0;
+  }
+  .give-amount-btn {
+    font-family: var(--font-display);
+    font-size: 1.5rem; font-weight: 700;
+    color: var(--gold); background: var(--black-card);
+    border: 1px solid rgba(201,168,76,0.2);
+    padding: 1.2rem; border-radius: 4px; cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    text-align: center;
+  }
+  .give-amount-btn:hover, .give-amount-btn.active {
+    background: rgba(201,168,76,0.1); border-color: var(--gold);
+  }
+  .give-amount-btn span { display: block; font-family: var(--font-body); font-size: 0.65rem; font-weight: 400; color: var(--white-muted); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+  .give-methods { margin-top: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem; }
+  .give-method {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 1rem 1.2rem;
+    background: var(--black-card); border: 1px solid rgba(201,168,76,0.1); border-radius: 4px;
+  }
+  .give-method-icon { font-size: 1.3rem; }
+  .give-method-info h4 { font-size: 0.75rem; font-weight: 600; color: var(--white); }
+  .give-method-info p { font-size: 0.72rem; color: var(--white-muted); font-weight: 300; }
+  .give-scripture {
+    padding: 2rem; background: rgba(201,168,76,0.05);
+    border: 1px solid rgba(201,168,76,0.15);
+    border-left: 3px solid var(--gold); border-radius: 2px; margin-top: 2rem;
+  }
+  .give-scripture p { font-family: var(--font-display); font-size: 1.15rem; font-style: italic; color: var(--white-muted); line-height: 1.7; }
+  .give-scripture cite { display: block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold); margin-top: 0.8rem; font-style: normal; }
+ 
+  /* ── CONNECT BANNER ── */
+  .connect-banner {
+    background: var(--gold);
+    padding: 4rem 6%; text-align: center;
+  }
+  .connect-banner h2 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 700; color: var(--black); margin-bottom: 0.8rem;
+  }
+  .connect-banner p { font-size: 0.9rem; color: rgba(10,10,10,0.7); margin-bottom: 2rem; font-weight: 400; }
+  .connect-form {
+    display: flex; gap: 0; max-width: 480px; margin: 0 auto;
+    border-radius: 2px; overflow: hidden;
+    border: 1px solid rgba(10,10,10,0.2);
+  }
+  .connect-form input {
+    flex: 1; padding: 0.9rem 1.2rem;
+    font-family: var(--font-body); font-size: 0.85rem;
+    border: none; outline: none;
+    background: rgba(255,255,255,0.9); color: var(--black);
+  }
+  .connect-form button {
+    font-family: var(--font-body); font-size: 0.72rem; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    background: var(--black); color: var(--gold);
+    border: none; padding: 0.9rem 1.5rem; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .connect-form button:hover { background: #222; }
+ 
+  /* ── FOOTER ── */
+  footer {
+    background: var(--black); border-top: 1px solid rgba(201,168,76,0.1);
+    padding: 4rem 6% 2rem;
+  }
+  .footer-grid {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 3rem; max-width: 1100px; margin: 0 auto 3rem;
+  }
+  .footer-brand-name {
+    font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--gold); margin-bottom: 0.8rem;
+  }
+  .footer-tagline { font-size: 0.78rem; color: var(--white-muted); font-weight: 300; line-height: 1.7; margin-bottom: 1.5rem; }
+  .footer-social { display: flex; gap: 0.8rem; }
+  .footer-social a {
+    width: 36px; height: 36px; border-radius: 2px;
+    background: var(--black-card); border: 1px solid rgba(201,168,76,0.15);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.85rem; text-decoration: none; color: var(--gold);
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .footer-social a:hover { background: rgba(201,168,76,0.1); border-color: var(--gold); }
+  .footer-col h4 { font-size: 0.7rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+  .footer-col ul li a { font-size: 0.82rem; color: var(--white-muted); text-decoration: none; font-weight: 300; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--gold); }
+  .footer-col ul li { font-size: 0.82rem; color: var(--white-muted); font-weight: 300; line-height: 1.6; }
+  .footer-bottom {
+    max-width: 1100px; margin: 0 auto;
+    padding-top: 2rem; border-top: 1px solid rgba(201,168,76,0.08);
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-bottom p { font-size: 0.72rem; color: var(--white-muted); font-weight: 300; opacity: 0.6; }
+ 
+.social-icon {
+  width: 30px;      /* Adjust this number to change the size */
+  height: auto;     /* Keeps the aspect ratio correct */
+  margin: 0 10px;   /* Adds a little space between the icons */
+  vertical-align: middle; 
+}
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(8px); }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+ 
+  /* ── MOBILE NAV ── */
+  .mobile-nav {
+    display: none; flex-direction: column;
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0; z-index: 99;
+    background: rgba(10,10,10,0.98); backdrop-filter: blur(20px);
+    align-items: center; justify-content: center; gap: 2rem;
+    text-align: center;
+  }
+  .mobile-nav.open { display: flex; }
+  .mobile-nav a {
+    font-family: var(--font-display); font-size: 2rem; font-weight: 700;
+    color: var(--white); text-decoration: none; transition: color 0.2s;
+  }
+  .mobile-nav a:hover { color: var(--gold); }
+  .mobile-nav-close {
+    position: absolute; top: 1.5rem; right: 1.5rem;
+    background: none; border: none; color: var(--gold); font-size: 2rem; cursor: pointer;
+  }
+ 
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .about-image-wrap { display: none; }
+    .give-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+    .nav-links, .nav-give { display: none; }
+    .hamburger { display: flex; }
+  }
+  @media (max-width: 600px) {
+    section { padding: 4rem 5%; }
+    .footer-grid { grid-template-columns: 1fr; }
+    .location-bar { flex-direction: column; align-items: flex-start; }
+    .location-bar-btn { margin-left: 0; }
+    .connect-form { flex-direction: column; }
+    .connect-form input, .connect-form button { width: 100%; }
+    .give-amounts { grid-template-columns: 1fr 1fr; }
+    .event-item { flex-direction: column; gap: 1rem; }
+    .event-date { border-right: none; border-bottom: 1px solid rgba(201,168,76,0.15); padding-right: 0; padding-bottom: 1rem; display: flex; align-items: center; gap: 1rem; }
+  }
+</style>
+</head>
+<body>
+ 
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="nav-logo-icon">
+      <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="17" y="4" width="6" height="32" rx="1" fill="#C9A84C"/>
+        <rect x="8" y="13" width="24" height="6" rx="1" fill="#C9A84C"/>
+      </svg>
+    </div>
+    <div class="nav-logo-text">
+      The Lord's Shepherd Ministries
+      <span>Where Faith Meets Purpose</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#sermons">Sermons</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#give">Give</a></li>
+    <li><a href="#connect">Connect</a></li>
+  </ul>
+  <a href="#give" class="nav-give">Give Now</a>
+  <button class="hamburger" onclick="openMobileNav()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+ 
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" onclick="closeMobileNav()" aria-label="Close">✕</button>
+  <a href="#about" onclick="closeMobileNav()">About</a>
+  <a href="#services" onclick="closeMobileNav()">Services</a>
+  <a href="#sermons" onclick="closeMobileNav()">Sermons</a>
+  <a href="#events" onclick="closeMobileNav()">Events</a>
+  <a href="#give" onclick="closeMobileNav()">Give</a>
+  <a href="#connect" onclick="closeMobileNav()">Connect</a>
+</div>
+ 
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-lines"></div>
+  <svg class="hero-cross" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="85" y="10" width="30" height="180" rx="4" fill="#C9A84C"/>
+    <rect x="20" y="70" width="160" height="30" rx="4" fill="#C9A84C"/>
+  </svg>
+  <div class="hero-content">
+    <div class="hero-eyebrow">Welcome Home</div>
+    <h1 class="hero-title">The Lord's<br><em>Shepherd</em> Ministries</h1>
+    <p class="hero-subtitle">A Church Rooted in Faith, Love, and Purpose</p>
+    <p class="hero-verse">"We are helped by God."</p>
+    <div class="hero-ctas">
+      <a href="#services" class="btn-primary">Join Us This Sunday</a>
+      <a href="#sermons" class="btn-outline">Watch Sermons</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+ 
+<!-- ABOUT -->
+<section class="about reveal" id="about">
+  <div class="about-grid">
+    <div>
+      <div class="section-eyebrow">Our Story</div>
+      <h2 class="section-title">A Church Built on <em>The Word</em></h2>
+      <div class="divider"></div>
+      <p class="section-lead">The Lord's Shepherd Ministries is an Apostolic and a prophetic Bible-believing community committed to transforming lives through the love of Christ. We exist to worship God, grow in His Word, and serve our community and the world.</p>
+      <div class="about-values">
+        <div class="about-value">
+          <div class="about-value-icon">✝</div>
+          <div>
+            <h4>Faith</h4>
+            <p>We are a purpose driven church, grooming the Youths to find their purpose and growing in it.</p>
+          </div>
+        </div>
+        <div class="about-value">
+          <div class="about-value-icon">🕊</div>
+          <div>
+            <h4>Community</h4>
+            <p>We are a family — welcoming all who seek God, regardless of background or season of life.</p>
+          </div>
+        </div>
+        <div class="about-value">
+          <div class="about-value-icon">🌿</div>
+          <div>
+            <h4>Purpose</h4>
+            <p>Every believer is called and equipped to live a life of meaning, impact, and kingdom significance.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="about-image-wrap">
+      <div class="about-image-frame">
+        <div class="about-image-placeholder">
+          <svg viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="34" y="4" width="12" height="72" rx="3" fill="currentColor"/>
+            <rect x="8" y="28" width="64" height="12" rx="3" fill="currentColor"/>
+          </svg>
+          <p><img src="images/2.jpg"></p>
+        </div>
+      </div>
+      <div class="about-corner about-corner-tl"></div>
+      <div class="about-corner about-corner-br"></div>
+    </div>
+  </div>
+</section>
+ 
+<!-- SERVICE TIMES -->
+<section class="services-section reveal" id="services">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-eyebrow">Gather With Us</div>
+    <h2 class="section-title">Service <em>Times</em></h2>
+    <div class="divider"></div>
+    <p class="section-lead">All are welcome. Come as you are and encounter the living God in an atmosphere of worship, prayer, and the Word.</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-day">Sunday</div>
+      <div class="service-name">Morning Worship</div>
+      <div class="service-time">8:00 AM — 10:30 AM</div>
+      <p class="service-desc">Begin your week in the presence of God. Spirit-led worship, hearing the word, and spend time in prayer and fellowship.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-day">Sunday</div>
+      <div class="service-name">Revival Tent Meeting</div>
+      <div class="service-time">4:00 PM — 7:30 PM</div>
+      <p class="service-desc">Our flagship gathering with full worship experience, anointed preaching, and ministry to every generation.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-day">Wednesday</div>
+      <div class="service-name">Workers Prayer Meeting</div>
+      <div class="service-time">5:30 PM — 7:00 PM</div>
+      <p class="service-desc">A meeting for all Church workerss to interceed for the church and stake strategic decisions.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-day">Friday</div>
+      <div class="service-name">Prayer Service</div>
+      <div class="service-time">6:00 PM — 9:00 PM</div>
+      <p class="service-desc">An evening set apart for intense prayer, prophetic intercession, and encountering God's presence.</p>
+    </div>
+  </div>
+  <div class="location-bar">
+    <div class="location-bar-icon">📍</div>
+    <div class="location-bar-text">
+      <h4>Find Us</h4>
+      <p>Tutuka-Obuasi,Behind Reliance Filling station, and KNUST Campus Kumasi, Indece Hall &nbsp;|&nbsp; Also streaming live every Sunday</p>
+    </div>
+    <a href="https://maps.google.com" target="_blank" class="location-bar-btn">Get Directions →</a>
+  </div>
+</section>
+ 
+<!-- SERMONS -->
+<section class="sermons reveal" id="sermons">
+  <div style="max-width:1100px;margin:0 auto;">
+    <div class="section-eyebrow">The Word</div>
+    <h2 class="section-title">Recent <em>Sermons</em></h2>
+    <div class="divider"></div>
+    <p class="section-lead">Miss a service? Every message is available to watch, listen, or share. Let the Word of God follow you everywhere.</p>
+  </div>
+  <div class="sermons-grid">
+    <div class="sermon-card">
+      <div class="sermon-thumb">
+        <div class="sermon-thumb-bg"></div>
+        <!--Wrap the button in the link-->
+        <a href="https://t.me/tlsobuasi/577" target="_blank" class="play-link"></a>
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+      </div>
+      <div class="sermon-info">
+        <div class="sermon-series">Series: THE FEAST OF EXPLOITS- Revival Tent Meeting.</div>
+        <div class="sermon-title"><a href="https://t.me/tlsobuasi/577"></a></div>
+        <div class="sermon-meta">God's Servant Joseph Asikoyaaba  &nbsp;·&nbsp; April 14, 2026</div>
+      </div>
+    </div>
+    <div class="sermon-card">
+      <div class="sermon-thumb">
+        <div class="sermon-thumb-bg"></div>
+         <!--Wrap the button in the link-->
+         <a href="https://t.me/tlsobuasi/564" target="_blank" class="play-link"></a>
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+      </div>
+      <div class="sermon-info">
+        <div class="sermon-series">Series: YOUTHFUL & USEFUL PART 2 - Revival Tent Meeting.</div>
+        <div class="sermon-title"><a href="https://t.me/tlsobuasi/564"></a></div>
+        <div class="sermon-meta">God's Servant Joseph Asikoyaaba &nbsp;·&nbsp; March 23, 2025</div>
+      </div>
+    </div>
+    <div class="sermon-card">
+      <div class="sermon-thumb">
+        <div class="sermon-thumb-bg"></div>
+         <!--Wrap the button in the link-->
+         <a href="https://t.me/tlsobuasi/538" target="_blank" class="play-link"></a>
+        <div class="play-btn">
+          <svg viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        </div>
+      </div>
+      <div class="sermon-info">
+        <div class="sermon-series">Series: MARITAL & RELATIONSHIP WISDOM - Revival Tent Meeting.</div>
+        <div class="sermon-title"><a href="https://t.me/tlsobuasi/538"></a></div>
+        <div class="sermon-meta">God's Servant Joseph Asikoyaaba &nbsp;·&nbsp; April 13, 2025</div>
+      </div>
+    </div>
+  </div>
+  <div class="sermons-cta">
+    <a href="https://t.me/tlsobuasi" class="btn-outline">View All Sermons>
+  </div>
+</section>
+ 
+<!-- EVENTS -->
+<section class="events reveal" id="events">
+  <div style="max-width:800px;margin:0 auto;">
+    <div class="section-eyebrow">Stay Connected</div>
+    <h2 class="section-title">Upcoming <em>Events</em></h2>
+    <div class="divider"></div>
+    <p class="section-lead">There is always something happening at The Lord's Shepherd Ministries. Come, grow, and be part of what God is doing.</p>
+  </div>
+  <div class="events-list">
+    <div class="event-item">
+      <div class="event-date">
+        <div class="event-date-day">
+          <p>First Week<br>of every Month.</p> 
+        </div>
+        <div class="event-date-month">Mon - Fri</div>
+      </div>
+      <div class="event-info">
+        <span class="event-tag">I Testify</span>
+        <div class="event-name">Global Prayer Watch</div>
+        <div class="event-details">Mon - Fri · 6:00 AM – 7:00 PM &nbsp;·&nbsp; Online Broadcast<br> A Period of fasting and Prayer.</div>
+      </div>
+    </div>
+    <div class="event-item">
+      <div class="event-date">
+        <div class="event-date-day">Every Thursday</div>
+        <div class="event-date-month">Weekly</div>
+      </div>
+      <div class="event-info">
+        <span class="event-tag">Outreach</span>
+        <div class="event-name">Zonal outreach</div>
+        <div class="event-details">Thurdays · 5:30 PM – 7:00 AM &nbsp;·&nbsp; Tjay<br>Soul winning and evangelism</div>
+      </div>
+    </div>
+    <div class="event-item">
+      <div class="event-date">
+        <div class="event-date-day">Every Wednesday</div>
+        <div class="event-date-month">Weekly</div>
+      </div>
+      <div class="event-info">
+        <span class="event-tag">Prayer Meeting</span>
+        <div class="event-name">Worker's Prayer Meeting</div>
+        <div class="event-details">Sunday · 5:30 PM – 7:30 PM &nbsp;·&nbsp; Tjay<br>A moment of intercession for the church, school and the community at large.</div>
+      </div>
+    </div>
+    <div class="event-item">
+      <div class="event-date">
+        <div class="event-date-day">Every Saturday</div>
+        <div class="event-date-month">Weekly</div>
+      </div>
+      <div class="event-info">
+        <span class="event-tag">General Outreach</span>
+        <div class="event-name">Zonal Outreach in hostels and the community at large</div>
+        <div class="event-details">Saturdays · 1:30 PM – 5:00 PM &nbsp;·&nbsp; Tjay<br>Winning souls unto the Lord</div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- GIVE -->
+<section class="give reveal" id="give">
+  <div class="give-inner">
+    <div>
+      <div class="section-eyebrow">Generosity</div>
+      <h2 class="section-title">Give to <em>God's Work</em></h2>
+      <div class="divider"></div>
+      <p class="section-lead">Your giving is an act of worship. Every seed sown goes directly to advancing the Kingdom — through ministry, outreach, and the care of our community.</p>
+      <div class="give-scripture">
+        <p>"Each one must give as he has decided in his heart, not reluctantly or under compulsion, for God loves a cheerful giver."</p>
+        <cite>2 Corinthians 9:7</cite>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:0.75rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--white-muted);margin-bottom:1rem;">Select an Amount</p>
+      <div class="give-amounts">
+        <button class="give-amount-btn" onclick="selectAmount(this)">GH₵00<span>Offering</span></button>
+        <button class="give-amount-btn active" onclick="selectAmount(this)">GH₵00<span>Tithe</span></button>
+        <button class="give-amount-btn" onclick="selectAmount(this)">Custom<span>Amount</span></button>
+      </div>
+      <a href="#" class="btn-primary" style="display:block;text-align:center;margin-bottom:2rem;">Give via Momo & Bank →</a>
+      <p style="font-size:0.75rem;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;color:var(--white-muted);margin-bottom:1rem;">Other Ways to Give</p>
+      <div class="give-methods">
+        <div class="give-method">
+          <div class="give-method-icon">📱</div>
+          <div class="give-method-info">
+            <h4>Mobile Money</h4>
+            <p>MTN: 0256679474 &nbsp;·&nbsp; Vodafone: 050 XXX XXXX</p>
+          </div>
+        </div>
+        <div class="give-method">
+          <div class="give-method-icon">🏦</div>
+          <div class="give-method-info">
+            <h4>Bank Transfer</h4>
+            <p>GCB Bank &nbsp;·&nbsp; Account: 1234567890 &nbsp;·&nbsp; Branch: Kumasi</p>
+          </div>
+        </div>
+        <div class="give-method">
+          <div class="give-method-icon">🤝</div>
+          <div class="give-method-info">
+            <h4>In-Person Offering</h4>
+            <p>Tithe & offering </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+<!-- CONNECT BANNER -->
+<div class="connect-banner reveal" id="connect">
+  <h2>We'd Love to Hear From You</h2>
+  <p>Stay updated with news, sermons, events, and devotionals. Enter your email to join our family.</p>
+  <div class="connect-form">
+    <input type="email" placeholder="your email" aria-label="Email address">
+    <button type="button">Join Us</button>
+  </div>
+</div>
+ 
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">The Lord's Shepherd Ministries</div>
+      <p class="footer-tagline">A community rooted in faith, committed to the Word, and called to love the world as Christ loves us. You are welcome here.</p>
+      <div class="footer-social">
+        
+        <a href="https://www.facebook.com/share/1CAH5pYJN7/?mibextid=wwXIfr" title="Facebook"><img src="logos/facebook.png" class="social-icon"></a>
+<a href="https://youtube.com/@thelordsshepherdministries1379?si=EubAB01Z4fvaiZ37" title="YouTube"><img src="logos/youtube (1).png" class="social-icon"></a>
+<a href="https://www.instagram.com/shepherdites__obuasi?igsh=a2IxZzE1cWpxd2hh" title="Instagram"><img src="logos/instagram.png" class="social-icon"></a>
+<a href="+233558738585" title="WhatsApp"><img src="logos/whatsapp (1).png" class="social-icon"></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#services">Service Times</a></li>
+        <li><a href="#sermons">Sermons</a></li>
+        <li><a href="#events">Events</a></li>
+        <li><a href="#give">Give</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Cells</h4>
+      <ul>
+        <li><a href="#">Revival Cell</a></li>
+        <li><a href="#">Zoe Cell</a></li>
+        <li><a href="#">Pentecost Cell</a></li>
+        <li><a href="#">Karios Cell</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li>Tutuka-Obuasi<br>Behind Reliance Filling station 
+          <a href="https://maps.app.goo.gl/2p1JijJhGE4tNG9h7" target="_blank">
+            view on Map
+          </a>
+        </li>
+        <li>+233558738585</li>
+        <li><a href="tlsministryinternatinalobuasi@gmailcom">tlsministryinternatinalobuasi@gmailcom</a></li>
+        <li>Mon – Fri: 8am – 5pm</li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 The Lord's Shepherd Ministries. All rights reserved.</p>
+    <p>Design by Jerry.</p>
+  </div>
+</footer>
+ 
+<script>
+  // Mobile nav
+  function openMobileNav() { document.getElementById('mobileNav').classList.add('open'); }
+  function closeMobileNav() { document.getElementById('mobileNav').classList.remove('open'); }
+ 
+  // Give amount toggle
+  function selectAmount(btn) {
+    document.querySelectorAll('.give-amount-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+  }
+ 
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => observer.observe(el));
+ 
+  // Nav shrink on scroll
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    nav.style.padding = window.scrollY > 60 ? '0.8rem 4%' : '1.2rem 4%';
+  });
+ 
+  // Email form
+  document.querySelector('.connect-form button').addEventListener('click', function() {
+    const input = document.querySelector('.connect-form input');
+    if (input.value && input.value.includes('@')) {
+      this.textContent = 'Welcome! ✓';
+      this.style.background = '#1a5c1a';
+      input.value = '';
+      setTimeout(() => { this.textContent = 'Join Us'; this.style.background = ''; }, 3000);
+    } else {
+      input.style.outline = '2px solid #C9A84C';
+      setTimeout(() => input.style.outline = '', 2000);
+    }
+    // Select all play buttons on the page
+const playButtons = document.querySelectorAll('.play-btn');
+
+playButtons.forEach(button => {
+    button.style.cursor = 'pointer'; // Make it look clickable
+    
+    button.addEventListener('click', function() {
+        // Find the closest sermon card and get the link from the info section
+        // or just hardcode it if it's the same for all.
+        window.open('https://t.me/tlsobuasi/577', '_blank');
+    });
+});
+  });
+</script>
+</body>
+</html>
