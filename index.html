@@ -518,7 +518,81 @@
     transition: opacity 0.7s ease, transform 0.7s ease;
   }
   .reveal.visible { opacity: 1; transform: translateY(0); }
+  
+  .gallery-grid {
+    display: gride;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 20px;
+  }
+
+  .gallery-grid img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* This crops images perfectly so they are all the same size */
+    border-radius: 8px;
+  }
  
+  /* Update on existing gallery img CSS  */
+.gallery-grid img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    
+    /* This makes the transition smooth instead of a sudden jump */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+    cursor: pointer;
+}
+
+/* This is the magic part - it happens when the mouse hovers over the image */
+.gallery-grid img:hover {
+    transform: scale(1.05); /* Zooms in by 5% */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Adds a soft shadow underneath */
+    z-index: 1; /* Ensures the zoomed image stays on top of others */
+}
+
+.gallery-grid img:hover {
+    filter: brightness(1.1); /* Increases brightness by 10% */
+    transform: translateY(-5px); /* Moves the image up slightly */
+}
+/* Container for the image and text */
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+/* The text box that stays hidden */
+.overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent black */
+    overflow: hidden;
+    width: 100%;
+    height: 0; /* Hidden by default */
+    transition: .5s ease;
+}
+
+/* Show the overlay on hover */
+.gallery-item:hover .overlay {
+    height: 100%; /* Cover the whole image */
+}
+
+/* Styling the text inside */
+.text {
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    width: 100%;
+}
+
   /* ── MOBILE NAV ── */
   .mobile-nav {
     display: none; flex-direction: column;
@@ -683,25 +757,25 @@
   </div>
   <div class="services-grid">
     <div class="service-card">
-      <div class="service-day">Sunday</div>
+      <div class="service-day">Sundays</div>
       <div class="service-name">Morning Worship</div>
       <div class="service-time">8:00 AM — 10:30 AM</div>
       <p class="service-desc">Begin your week in the presence of God. Spirit-led worship, hearing the word, and spend time in prayer and fellowship.</p>
     </div>
     <div class="service-card">
-      <div class="service-day">Sunday</div>
+      <div class="service-day">Sundays</div>
       <div class="service-name">Revival Tent Meeting</div>
       <div class="service-time">4:00 PM — 7:30 PM</div>
       <p class="service-desc">Our flagship gathering with full worship experience, anointed preaching, and ministry to every generation.</p>
     </div>
     <div class="service-card">
-      <div class="service-day">Wednesday</div>
+      <div class="service-day">Wednesdays</div>
       <div class="service-name">Workers Prayer Meeting</div>
       <div class="service-time">5:30 PM — 7:00 PM</div>
       <p class="service-desc">A meeting for all Church workerss to interceed for the church and stake strategic decisions.</p>
     </div>
     <div class="service-card">
-      <div class="service-day">Friday</div>
+      <div class="service-day">Fridays</div>
       <div class="service-name">Prayer Service</div>
       <div class="service-time">6:00 PM — 9:00 PM</div>
       <p class="service-desc">An evening set apart for intense prayer, prophetic intercession, and encountering God's presence.</p>
@@ -818,7 +892,7 @@
       <div class="event-info">
         <span class="event-tag">Prayer Meeting</span>
         <div class="event-name">Worker's Prayer Meeting</div>
-        <div class="event-details">Sunday · 5:30 PM – 7:30 PM &nbsp;·&nbsp; Tjay<br>A moment of intercession for the church, school and the community at large.</div>
+        <div class="event-details">Wednesdays · 5:30 PM – 7:30 PM &nbsp;·&nbsp; Tjay<br>A moment of intercession for the church, school and the community at large.</div>
       </div>
     </div>
     <div class="event-item">
@@ -894,6 +968,465 @@
   </div>
 </div>
  
+<!-- The main container that creates the grid layout -->
+ <section class="gallery">
+<h2>Our Gallery</h2>
+<div class="gallery-grid">
+
+    <!-- Image 1 -->
+    <a href="images/church1 (1).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (1).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+    <!-- Image 2 -->
+     <a href="images/church1 (2).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (2).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+    <!-- Image 3 -->
+     <a href="images/church1 (3).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (3).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+    <!-- Image 4 -->
+     <a href="images/church1 (4).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (4).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+    <!-- Image 5 -->
+     <a href="images/church1 (5).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (5).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+    <!-- Image 6 -->
+    <a href="images/church1 (6).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (6).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 7 -->
+     <a href="images/church1 (7).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (7).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 8 -->
+     <a href="images/church1 (8).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (8).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 9 -->
+     <a href="images/church1 (9).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (9).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 10 -->
+     <a href="images/church1 (10).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (10).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 11 -->
+    <a href="images/church1 (11).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (11).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 12 -->
+    <a href="images/church1 (12).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (12).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 13 -->
+     <a href="images/church1 (13).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (13).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 14 -->
+     <a href="images/church1 (14).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (14).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+     <!-- Image 15 -->
+     <a href="images/church1 (15).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (15).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 16 -->
+     <a href="images/church1 (16).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (16).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 17 -->
+     <a href="images/church1 (17).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (17).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 18 -->
+     <a href="images/church1 (18).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (18).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 19 -->
+     <a href="images/church1 (19).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (19).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 20 -->
+     <a href="images/church1 (20).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (20).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 21 -->
+     <a href="images/church1 (21).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (21).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 22 -->
+     <a href="images/church1 (22).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (22).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 23 -->
+    <a href="images/church1 (23).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (23).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 24 -->
+     <a href="images/church1 (24).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (24).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 25 -->
+     <a href="images/church1 (25).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (25).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 26 -->
+    <a href="images/church1 (26).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (26).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 27 -->
+     <a href="images/church1 (27).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (27).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 28 -->
+     <a href="images/church1 (28).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (28).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 29 -->
+      <a href="images/church1 (29).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (29).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 30 -->
+      <a href="images/church1 (30).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (30).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 31 -->
+      <a href="images/church1 (31).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (31).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 32 -->
+      <a href="images/church1 (32).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (32).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 33 -->
+       <a href="images/church1 (33).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (33).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 34 -->
+      <a href="images/church1 (34).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (34).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 35 -->
+      <a href="images/church1 (35).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (35).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 36 -->
+      <a href="images/church1 (36).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (36).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 37 -->
+      <a href="images/church1 (37).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (37).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 38 -->
+      <a href="images/church1 (38).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (38).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 39 -->
+      <a href="images/church1 (39).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (39).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 40 -->
+       <a href="images/church1 (40).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (40).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 41 -->
+      <a href="images/church1 (41).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (41).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 42 -->
+      <a href="images/church1 (42).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (42).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 43 -->
+       <a href="images/church1 (43).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (43).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 44 -->
+       <a href="images/church1 (44).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (44).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 45 -->
+      <a href="images/church1 (45).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (45).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 46 -->
+      <a href="images/church1 (46).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (46).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 47 -->
+      <a href="images/church1 (47).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (47).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 48 -->
+      <a href="images/church1 (48).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (48).jpg" alt="Service">
+        <div class="overlay"><div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+
+     <!-- Image 49 -->
+      <a href="images/church1 (49).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (49).jpg" alt="Service">
+        <div class="overlay">
+          <div class="text">Church Gallery</div>
+        </div>
+    </div>
+    </a>
+
+     <!-- Image 50 -->
+      <a href="images/church1 (50).jpg" target="_blank">
+    <div class="gallery-item">
+        <img src="images/church1 (50).jpg" alt="Service">
+        <div class="overlay">
+          <div class="text">Church Gallery</div>
+      </div>
+    </div>
+    </a>
+    </section>
+</div> <!-- End of gallery-grid -->
+
+
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
